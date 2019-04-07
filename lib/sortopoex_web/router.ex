@@ -1,4 +1,5 @@
 defmodule SortopoexWeb.Router do
+  @moduledoc false
   use SortopoexWeb, :router
 
   pipeline :api do

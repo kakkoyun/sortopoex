@@ -52,12 +52,12 @@ defmodule SortopoexWeb.TaskControllerTest do
           "name" => "task-1"
         },
         %{
-          "command" => "cat /tmp/file1",
-          "name" => "task-2"
-        },
-        %{
           "command" => "echo 'Hello World' > /tmp/file1",
           "name" => "task-3"
+        },
+        %{
+          "command" => "cat /tmp/file1",
+          "name" => "task-2"
         },
         %{
           "command" => "rm /tmp/file1",

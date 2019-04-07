@@ -1,5 +1,6 @@
 defmodule SortopoexWeb.ErrorHelpers do
-  @moduledoc """
+  @moduledoc false
+  _ = """
   Conveniences for translating and building error messages.
   """
 

@@ -1,5 +1,6 @@
 defmodule SortopoexWeb.Gettext do
-  @moduledoc """
+  @moduledoc false
+  _ = """
   A module providing Internationalization with a gettext-based API.
 
   By using [Gettext](https://hexdocs.pm/gettext),
@@ -20,5 +21,6 @@ defmodule SortopoexWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
+
   use Gettext, otp_app: :sortopoex
 end
