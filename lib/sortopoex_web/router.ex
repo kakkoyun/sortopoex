@@ -8,4 +8,11 @@ defmodule SortopoexWeb.Router do
   scope "/api", SortopoexWeb do
     pipe_through :api
   end
+
+  scope "/_status" do
+    pipe_through(:api)
+
+    get("/", SortopoexWeb.StatusController, :status)
+    head("/", SortopoexWeb.StatusController, :status)
+  end
 end
