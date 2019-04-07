@@ -35,3 +35,22 @@ sortopoex-*.tar
 # secrets files as long as you replace their contents by environment
 # variables.
 /config/*.secret.exs
+
+# Static Analyzers
+.sobelow
+.plt_version
+
+# Elixir Language Server files
+.elixir_ls
+
+# Shell helpers
+.mix_tasks
+
+# Docs/Coverage
+doc/
+cover/
+.iex.exs
+
+# Dialyzer
+*.plt
+*.plt.hash
