@@ -34,8 +34,8 @@ defmodule Sortopoex.MixProject do
           :no_undefined_callbacks,
           :unmatched_returns,
           :race_conditions,
-          :underspecs,
-          :overspecs
+          # :underspecs,
+          :overspecs,
           # :specdiffs
         ]
       ]

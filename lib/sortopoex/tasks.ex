@@ -21,7 +21,7 @@ defmodule Sortopoex.Tasks do
       iex> sort([])
       {:ok, []}
   """
-  @spec sort(list(map)) :: list(map)
+  @spec sort(list) :: {:error, binary} | {:ok, [any]}
   def sort(tasks) when is_list(tasks) do
     lookup = tasks |> Enum.reduce(%{}, fn elem, acc -> Map.put(acc, elem["name"], elem) end)
     graph = :digraph.new()
