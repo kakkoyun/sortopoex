@@ -36,8 +36,29 @@ defmodule SortopoexWeb.TaskControllerTest do
   }
   """
 
+  @bad_input_payload """
+  {
+    "tasks": [
+        {
+            "name": "task-1",
+            "command": "touch /tmp/file1",
+            "requires": [
+              "task-2"
+          ]
+        },
+        {
+            "name": "task-2",
+            "command": "cat /tmp/file1",
+            "requires": [
+                "task-1"
+            ]
+        }
+    ]
+  }
+  """
+
   describe "taks controller" do
-    test "POST /api/tasks/sort returns commans as json", %{conn: conn} do
+    test "POST /api/tasks/sort returns commands as json", %{conn: conn} do
       conn =
         conn
         |> put_req_header("content-type", "application/json")
@@ -75,6 +96,16 @@ defmodule SortopoexWeb.TaskControllerTest do
 
       assert response(conn, 200)
       assert response(conn, 200) =~ "#!/usr/bin/env bash"
+    end
+
+    test "POST /api/tasks/sort returns error when cyclic tasks given", %{conn: conn} do
+      conn =
+        conn
+        |> put_req_header("content-type", "application/json")
+        |> put_req_header("accept", "text/plain")
+        |> post("/api/tasks/sort", @bad_input_payload)
+
+      assert response(conn, 400)
     end
   end
 end

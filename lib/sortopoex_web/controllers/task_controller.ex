@@ -24,10 +24,10 @@ defmodule SortopoexWeb.TaskController do
     |> case do
       {:ok, sorted} ->
         tasks = sorted |> Enum.map(&Map.take(&1, ["name", "command"]))
-        pretty_json(conn, 200, tasks)
+        pretty_json(conn, :ok, tasks)
 
       {:error, message} ->
-        pretty_json(conn, 400, %{error: message})
+        pretty_json(conn, :bad_request, %{error: message})
     end
   end
 

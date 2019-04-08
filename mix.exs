@@ -13,9 +13,9 @@ defmodule Sortopoex.MixProject do
       deps: deps(),
 
       # Docs
-      name: "Sotopoex",
-      source_url: "https://github.com/kakkoyun/sotopoex",
-      homepage_url: "https://github.com/kakkoyun/sotopoex",
+      name: "Sortopoex",
+      source_url: "https://github.com/kakkoyun/sortopoex",
+      homepage_url: "https://github.com/kakkoyun/sortopoex",
       docs: [
         main: "Sortopoex",
         # logo: "path/to/logo.png",
