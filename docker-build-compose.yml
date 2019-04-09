@@ -1,0 +1,9 @@
+version: '3'
+services:
+  sortopoex:
+    # build: .
+    image: kakkoyun/sortopoex:latest
+    environment:
+      MIX_ENV: prod
+    ports:
+      - 14000:4000

@@ -11,11 +11,14 @@ use Mix.Config
 # before starting your production server.
 config :sortopoex, SortopoexWeb.Endpoint,
   http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  # url: [host: "example.com", port: 80],
+  # cache_static_manifest: "priv/static/cache_manifest.json"
+  server: true,
+  root: ".",
+  version: :sortopoex |> Application.spec(:vsn) |> to_string()
 
 # Do not print debug messages in production
-config :logger, level: :info
+# config :logger, level: :info
 
 # ## SSL Support
 #

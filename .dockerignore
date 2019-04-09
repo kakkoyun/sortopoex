@@ -1,0 +1,7 @@
+*.md
+Makefile
+test/
+doc/
+deps/
+_build
+.elixir_ls

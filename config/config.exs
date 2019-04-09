@@ -7,17 +7,45 @@
 # General application configuration
 use Mix.Config
 
+# General application configuration
+version_from_git_tag =
+  case System.cmd("git", ["describe", "--always", "--tags", "--dirty"]) do
+    {"v" <> version, 0} ->
+      version |> String.trim()
+
+    _ ->
+      "0.0.0"
+  end
+
 # Configures the endpoint
 config :sortopoex, SortopoexWeb.Endpoint,
-  url: [host: "localhost"],
-  secret_key_base: "ayo9bJVKOUDH5WnPr9M+f9bW6PdyfomN2Qxnd/5huRpIs8sW6CnAzPVplg2Osq9u",
+  http: [
+    port: {:system, :integer, "SORTOPOEX_INTERNAL_PORT", 4000},
+    protocol_options: [
+      max_request_line_length: 8192,
+      max_header_value_length: 8192
+    ]
+  ],
+  url: [
+    scheme: {{:via, Sortopoex.Config}, "SORTOPOEX_EXPOSED_VIA_SSL"},
+    host: {:system, "SORTOPOEX_EXPOSED_HOST", "localhost"},
+    port: {:system, :integer, "SORTOPOEX_EXPOSED_PORT", 4000}
+  ],
+  secret_key_base: "",
+  secret_key_base:
+    {:system, "SORTOPOEX_SECRET_KEY_BASE", "ayo9bJVKOUDH5WnPr9M+f9bW6PdyfomN2Qxnd/5huRpIs8sW6CnAzPVplg2Osq9u"},
   render_errors: [view: SortopoexWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: Sortopoex.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Sortopoex.PubSub, adapter: Phoenix.PubSub.PG2],
+  log_level: {:system, :atom, "SORTOPOEX_LOG_LEVEL", :debug}
 
-# Configures Elixir's Logger
-config :logger, :console,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+# Logger
+config :logger,
+  truncate: :infinity,
+  utc_log: true,
+  console: [
+    metadata: [:request_id, :module, :function],
+    format: "$time $metadata[$level] $levelpad$message\n"
+  ]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

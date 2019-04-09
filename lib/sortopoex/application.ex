@@ -6,6 +6,10 @@ defmodule Sortopoex.Application do
   use Application
 
   def start(_type, _args) do
+    unless ConfexConfigProvider.release_mode?() do
+      ConfexConfigProvider.configure_applications()
+    end
+
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts

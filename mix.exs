@@ -48,7 +48,7 @@ defmodule Sortopoex.MixProject do
   def application do
     [
       mod: {Sortopoex.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :confex]
     ]
   end
 
@@ -76,7 +76,12 @@ defmodule Sortopoex.MixProject do
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.7.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false},
-      {:inch_ex, github: "rrrene/inch_ex", only: [:dev], runtime: false}
+      {:inch_ex, github: "rrrene/inch_ex", only: [:dev], runtime: false},
+
+      # Configuration and releases
+      {:distillery, "~> 2.0"},
+      {:confex, "~> 3.4.0"},
+      {:confex_config_provider, "~> 0.1.0"}
     ]
   end
 
@@ -84,7 +89,7 @@ defmodule Sortopoex.MixProject do
     [
       test: [
         "format --check-formatted",
-        "credo --strict",
+        "credo --strict --color -a",
         # running tests last so that the arguments are passed to it
         "test"
       ],
