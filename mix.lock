@@ -20,5 +20,6 @@
   "plug_cowboy": {:hex, :plug_cowboy, "2.0.2", "6055f16868cc4882b24b6e1d63d2bada94fb4978413377a3b32ac16c18dffba2", [:mix], [{:cowboy, "~> 2.5", [hex: :cowboy, repo: "hexpm", optional: false]}, {:plug, "~> 1.7", [hex: :plug, repo: "hexpm", optional: false]}], "hexpm"},
   "plug_crypto": {:hex, :plug_crypto, "1.0.0", "18e49317d3fa343f24620ed22795ec29d4a5e602d52d1513ccea0b07d8ea7d4d", [:mix], [], "hexpm"},
   "ranch": {:hex, :ranch, "1.7.1", "6b1fab51b49196860b733a49c07604465a47bdb78aa10c1c16a3d199f7f8c881", [:rebar3], [], "hexpm"},
+  "ranch_connection_drainer": {:hex, :ranch_connection_drainer, "0.1.2", "0de193cbe5213b86e590ab552643777c9bb75b55ece2a3e11d2fc384c6e9f4a5", [:mix], [{:ranch, "~> 1.6", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"},
   "sobelow": {:hex, :sobelow, "0.7.6", "4a52ff10d02077b6660a233a9e701c6ba455d149643ad0b2fb322607a49c1ce6", [:mix], [], "hexpm"},
 }

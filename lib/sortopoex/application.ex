@@ -9,11 +9,11 @@ defmodule Sortopoex.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      SortopoexWeb.Endpoint
+      SortopoexWeb.Endpoint,
+      {RanchConnectionDrainer, ranch_ref: SortopoexWeb.Endpoint.HTTP, shutdown: 30_000}
       # Starts a worker by calling: Sortopoex.Worker.start_link(arg)
       # {Sortopoex.Worker, arg},
     ]
-
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Sortopoex.Supervisor]
