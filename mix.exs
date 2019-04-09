@@ -35,7 +35,7 @@ defmodule Sortopoex.MixProject do
           :unmatched_returns,
           :race_conditions,
           # :underspecs,
-          :overspecs,
+          :overspecs
           # :specdiffs
         ]
       ]
