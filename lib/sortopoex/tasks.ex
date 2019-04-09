@@ -13,7 +13,7 @@ defmodule Sortopoex.Tasks do
       {:ok, [%{"name" => 2}, %{"name" => 1, "requires" => [2]}]}
 
       iex> sort([%{"name" => 1, "requires" => [2]}, %{"name" => 2, "requires" => [1]}])
-      {:error, "Failed to sort"}
+      {:error, "Failed to sort tasks, there is acyclic dependency"}
 
       iex> sort([%{"name" => 1}, %{"name" => 2}])
       {:ok, [%{"name" => 2}, %{"name" => 1}]}
@@ -32,10 +32,12 @@ defmodule Sortopoex.Tasks do
       Enum.each(requrements, fn req -> add_dependency(graph, name, req) end)
     end)
 
-    case :digraph_utils.topsort(graph) do
-      # Graph has cycles or other problems
-      false -> {:error, "Failed to sort"}
-      sorted -> {:ok, sorted |> Enum.map(&lookup[&1])}
+    with {:is_acyclic, true} <- {:is_acyclic, :digraph_utils.is_acyclic(graph)},
+         {:sort, sorted} when not is_boolean(sorted) <- {:sort, :digraph_utils.topsort(graph)} do
+      {:ok, sorted |> Enum.map(&lookup[&1])}
+    else
+      {:is_acyclic, false} -> {:error, "Failed to sort tasks, there is acyclic dependency"}
+      {:sort, false} -> {:error, "Failed to sort tasks"}
     end
   end
 
